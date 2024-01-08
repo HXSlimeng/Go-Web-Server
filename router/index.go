@@ -10,7 +10,6 @@ func SetupRouter()*gin.Engine {
 
 	{
 		deptR := router.Group("/dept")
-		
 		deptR.GET("/getList",sysdept.GetList)
 	}
 	return router

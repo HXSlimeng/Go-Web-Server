@@ -10,7 +10,7 @@ import (
 var DB *gorm.DB
 
 func init() {
-	database,err := gorm.Open(sqlite.Open("go-admin-db.db"),&gorm.Config{})
+	database,err := gorm.Open(sqlite.Open("./database/go-admin-db.db"),&gorm.Config{})
 	if err !=nil {
 		log.Fatal("err")
 	}
