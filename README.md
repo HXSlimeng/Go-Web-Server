@@ -16,10 +16,3 @@
 | utils           | 工具函数                       |
 | config.yaml     | 配置文件                       |
 | main.go         | 项目启动文件                   |
-
-# Todo
-
-- [ ] 命令行工具生成结构文件（ctrl、service、model）
-- [ ] 集成 JWT
-- [ ] Restful API
-- [ ] gorm 实现
