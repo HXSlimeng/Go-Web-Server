@@ -11,8 +11,8 @@ type Api struct {
 }
 
 
-func (a *Api)Ok(obj interface {},message string){
-	a.Ctx.JSON(http.StatusOK,Response{http.StatusOK,message,obj})
+func (a *Api)Ok(message string,data interface{}){
+	a.Ctx.JSON(http.StatusOK,Response{http.StatusOK,message,data})
 }
 
 func (a *Api)Error(message string){
@@ -25,7 +25,7 @@ func (a *Api)MakeContext(c *gin.Context) *Api {
 	return a
 }
 
-func (a *Api)PageOk(page int ,pageSize int ,total int ,data interface {},message string){
-	res := Page{total,page,pageSize,data}
-	a.Ok(res,message)
+func (a *Api)PageOk(pageInfo PageDto,total *int64 ,data interface {},message string){
+	res := PageRes{Response: Response{http.StatusOK,message,data},Total: *total,Page: pageInfo.Page,PageSize: pageInfo.PageSize}
+	a.Ctx.JSON(http.StatusOK,res)
 }

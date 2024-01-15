@@ -3,11 +3,10 @@ package dto
 import "github.com/HXSlimeng/Go-Web-Server/common"
 
 type GetListDto struct {
-	common.Dto
-	Leader string `json:"leader" serach:"type:contains"`  //负责人
-	Phone  string `json:"phone"`  //手机
-	Email  string `json:"email"`  //邮箱
-	Status int    `json:"status"` //状态
-	Page   int    `json:"page"`
-	PageNo int    `json:"pageNo"`
+	Leader string `form:"leader" json:"leader" search:"type:contains"` //负责人
+	Phone  string `form:"phone" json:"phone"`                          //手机
+	Email  string `form:"email" json:"email"`                          //邮箱
+	Status int    `form:"status" json:"status"`                        //状态
+	common.PageDto `gorm:"-"`
+	common.Dto `gorm:"-"`
 }

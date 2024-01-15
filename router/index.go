@@ -7,10 +7,10 @@ import (
 
 func SetupRouter()*gin.Engine {
 	router := gin.Default()
-
 	{
 		deptR := router.Group("/dept")
 		deptR.GET("/getList",sysdept.GetList)
+		deptR.POST("/addDept",sysdept.AddDept)
 	}
 	return router
 }

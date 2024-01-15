@@ -9,7 +9,7 @@ import (
 type Model struct {
 	DeptId   int    `json:"deptId" gorm:"primaryKey;autoIncrement;"` //部门编码
 	ParentId int    `json:"parentId" gorm:""`                        //上级部门
-	DeptName string `json:"deptName"  gorm:"size:128;"`              //部门名称
+	DeptName string `json:"deptName" form:"dept_name"  gorm:"size:128;"`              //部门名称
 	Sort     int    `json:"sort" gorm:"size:4;"`                     //排序
 	Leader   string `json:"leader" gorm:"size:128;"`                 //负责人
 	Phone    string `json:"phone" gorm:"size:11;"`                   //手机
