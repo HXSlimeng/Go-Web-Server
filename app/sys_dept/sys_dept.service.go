@@ -2,27 +2,27 @@ package sysdept
 
 import (
 	"github.com/HXSlimeng/Go-Web-Server/app/sys_dept/dto"
+	"github.com/HXSlimeng/Go-Web-Server/common"
 	"github.com/HXSlimeng/Go-Web-Server/database"
 	"gorm.io/gorm"
 )
 
+var SC *Service
+
+func init()  {
+	SC = new(Service)
+}
+
 type Service struct{}
 
-
-func (s *Service) GetList(req *dto.GetListDto) (*[]Model,*int64) {
+func (s *Service) GetList(c *dto.GetListDto,list *[]Model,count *int64)error  {
     db := database.DB
 
-    var users []Model
-	var total int64
+	return db.Model(&Model{}).Scopes(
+		c.Paginate,
+		common.ResolveSearchQuery(c),
+	).Count(count).Find(list).Error
 
-	db.Model(&Model{}).Count(&total)
-
-	db = req.ResolveSearchQuery(req, db)
-	db = req.ResolvePage(db)
-
-	db.Find(&users)
-
-    return &users, &total
 }
 
 func (s *Service)AddDept(dept *Model)error  {
@@ -36,6 +36,14 @@ func (s *Service)AddDept(dept *Model)error  {
 	}else{
 		return &ExistErr{}
 	}
+}
+
+func (s *Service)DelDept(ids *dto.DelIdsDto)error{
+	db := database.DB.Delete(&Model{},ids.Ids)
+	if db.Error !=nil {
+		return db.Error	
+	}
+	return nil
 }
 
 type ExistErr struct{}

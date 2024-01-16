@@ -25,7 +25,7 @@ func (a *Api)MakeContext(c *gin.Context) *Api {
 	return a
 }
 
-func (a *Api)PageOk(pageInfo PageDto,total *int64 ,data interface {},message string){
-	res := PageRes{Response: Response{http.StatusOK,message,data},Total: *total,Page: pageInfo.Page,PageSize: pageInfo.PageSize}
+func (a *Api)PageOk(total *int64 ,data interface {},message string){
+	res := PageRes{Response: Response{http.StatusOK,message,data},Total: *total}
 	a.Ctx.JSON(http.StatusOK,res)
 }

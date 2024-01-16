@@ -8,7 +8,5 @@ type Response struct {
 
 type PageRes struct {
 	Response
-	Total    int64 `json:"total"`
-	Page     int   `json:"page"`
-	PageSize int   `json:"pageSize"`
+	Total int64 `json:"total"`
 }

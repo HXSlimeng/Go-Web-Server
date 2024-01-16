@@ -9,4 +9,9 @@ type GetListDto struct {
 	Status int    `form:"status" json:"status"`                        //状态
 	common.PageDto `gorm:"-"`
 	common.Dto `gorm:"-"`
+	
+}
+
+type DelIdsDto struct {
+	Ids []int `form:"ids" json:"ids"`
 }
